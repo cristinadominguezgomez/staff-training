@@ -4,8 +4,7 @@ const express = require("express");
 const { SERVER_PORT } = process.env;
 
 const {
-  newEmployeesController,
-  getEmployeesController,
+  registerEmpController,
   loginEmployees,
 } = require("./controllers/employees"); //trae las funciones desde el index controllers
 
@@ -14,8 +13,8 @@ const app = express();
 app.use(express.json()); //procesa los datos en formato json
 
 //rutas de employees
-app.post("/employees", newEmployeesController); //activateEmp
-app.get("/employees/:id", getEmployeesController); //registerEmp
+app.post("/employees", registerEmpController); //activateEmp
+// app.get("/employees/:id", getEmployeesController); //registerEmp
 app.post("/login", loginEmployees); //loginEmp
 
 //rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)

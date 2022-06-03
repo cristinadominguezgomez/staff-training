@@ -4,8 +4,9 @@ const { generateError } = require("../../helpers/errorControllers");
 const { getPool } = require("../../database/getPool");
 
 const getEmployeeId = async (id) => {
+  const pool = await getPool();
+
   try {
-    const pool = await getPool();
     const [result] = await pool.query(
       `SELECT id, email, role, name, avatar FROM users WHERE id=?`,
       [id]

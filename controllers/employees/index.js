@@ -1,6 +1,6 @@
 const newEmployeesController = require("./activateEmp");
 
-const getEmployeesController = require("./registerEmp");
+const registerEmpController = require("./registerEmp");
 
 const loginEmployees = require("./loginEmp");
 
@@ -8,7 +8,7 @@ const deleteEmployees = require("./deleteEmp");
 
 module.exports = {
   newEmployeesController,
-  getEmployeesController,
+  registerEmpController,
   loginEmployees,
   deleteEmployees,
 };

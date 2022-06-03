@@ -1,6 +1,6 @@
 const insertEmp = require("../../repositories/employees/insertEmp");
 
-const registerEmp = async (req, res, next) => {
+const registerEmpController = async (req, res, next) => {
   try {
     /** Nos traemos el email y la password del body */
     const { email, password } = req.body;
@@ -27,4 +27,4 @@ const registerEmp = async (req, res, next) => {
   }
 };
 
-module.exports = registerEmp;
+module.exports = registerEmpController;
