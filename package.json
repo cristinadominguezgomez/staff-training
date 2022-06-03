@@ -1,0 +1,23 @@
+{
+  "name": "proyecto-entrenamiento",
+  "version": "1.0.0",
+  "description": "Api para el entrenamiento del personal de un gimnasio",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "initDB": "node database/initDB.js",
+    "populateDB": "node database/populateDB.js"
+  },
+  "author": "Shyrley-Lilen-Cristina",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.16.0",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2"
+  }
+}
