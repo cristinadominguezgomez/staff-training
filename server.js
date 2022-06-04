@@ -7,6 +7,7 @@ const {
   registerEmpController,
   loginEmpControllers,
   activateEmpControllers,
+  getEmpByIdController,
 } = require("./controllers/employees"); //trae las funciones desde el index controllers
 
 const app = express();
@@ -18,6 +19,7 @@ app.post("/employees", registerEmpController); //registerEmp
 app.put("/employees/activate/:registrationCode", activateEmpControllers); //es put porque modificamos al bd puede ser get tambien
 // app.get("/employees/:id", getEmployeesController); //
 app.post("/login", loginEmpControllers); //loginEmp
+app.get("/employees/:id", getEmpByIdController); //getEmpById
 
 //rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)
 // app.get("/", getExercisesController);
@@ -47,3 +49,4 @@ app.use((error, req, resp, next) => {
 app.listen(3000, () => {
   console.log(`Server listening on http://localhost:${SERVER_PORT}`);
 });
+ 

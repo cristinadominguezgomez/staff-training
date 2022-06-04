@@ -1,5 +1,6 @@
 const insertEmp = require("./insertEmp");
-const getEmployeeId = require("./getEmp");
+const selectEmpById = require("selectEmpById");
 const selectUserByActivationCode = require("./selectEmpActivationCode");
 
-module.exports = { insertEmp, getEmployeeId, selectUserByActivationCode };
+module.exports = { insertEmp, selectEmpById, selectUserByActivationCode };
+
