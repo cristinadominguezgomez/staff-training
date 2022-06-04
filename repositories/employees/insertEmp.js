@@ -1,0 +1,21 @@
+const getPool = require("../../database/getPool");
+
+const insertEmp = async (email, password) => {
+  /** Nos tramos el pool */
+  const pool = getPool();
+
+  // const [{ insertId }] = await pool.query(
+  //   `INSERT INTO users (email, password, avatar, cv) VALUES ("${email}", "${password}", "${avatarName}", "${cvName}")`
+  // );
+
+  /** Realizamos una query donde insertamos un nuevo usuario con los datos recibidos por parámetro */
+  const [{ insertId }] = await pool.query(
+    "INSERT INTO employees (email, password) VALUES (?, ?)",
+    [email, password]
+  );
+
+  /** Retornamos el id del nuevo usuario creado */
+  return insertId;
+};
+
+module.exports = insertEmp;
