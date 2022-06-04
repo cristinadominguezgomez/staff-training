@@ -5,7 +5,8 @@ const { SERVER_PORT } = process.env;
 
 const {
   registerEmpController,
-  loginEmployees,
+  loginEmpControllers,
+  activateEmpControllers,
 } = require("./controllers/employees"); //trae las funciones desde el index controllers
 
 const app = express();
@@ -13,9 +14,10 @@ const app = express();
 app.use(express.json()); //procesa los datos en formato json
 
 //rutas de employees
-app.post("/employees", registerEmpController); //activateEmp
-// app.get("/employees/:id", getEmployeesController); //registerEmp
-app.post("/login", loginEmployees); //loginEmp
+app.post("/employees", registerEmpController); //registerEmp
+app.put("/employees/activate/:registrationCode", activateEmpControllers); //es put porque modificamos al bd puede ser get tambien
+// app.get("/employees/:id", getEmployeesController); //
+app.post("/login", loginEmpControllers); //loginEmp
 
 //rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)
 // app.get("/", getExercisesController);

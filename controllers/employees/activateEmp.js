@@ -1,25 +1,26 @@
 const { generateError } = require("../../helpers/errorControllers");
 
-//este controlador nos permite registrarnos, tiene que recoger del body la informacion.
+const {
+  selectUserByActivationCode,
+} = require("../../repositories/employees/selectEmpActivationCode");
 
-const newEmployeesController = (req, resp, next) => {
+//este controlador informa si el empleado esta activado o no.
+
+const activateEmpControllers = (req, resp, next) => {
   try {
-    //console.log(req.url, req.method, req.body);
+    const { registrationCode } = req.params;
+    const employee = selectUserByActivationCode(registrationCode);
 
-    const { email, password } = req.body;
-    //hay que hacer esta validacion con joi
-    if (!email || !password) {
-      throw generateError("El email o la password son incorrectas", 400);
+    if (!employee) {
+      const error = new Error(
+        "NO hay usuarios sin activar con ese codigo de registro"
+      );
+      error.statusCode = 404;
+      throw error;
     }
-
-    resp.status(201).send({
-      status: "ok",
-      message: "Usuario registrado correctamente",
-      data: { email, password },
-    });
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = newEmployeesController;
+module.exports = activateEmpControllers;
