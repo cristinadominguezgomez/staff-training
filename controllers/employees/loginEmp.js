@@ -1,4 +1,4 @@
-const loginEmployees = (req, resp, next) => {
+const loginEmpControllers = (req, resp, next) => {
   try {
     resp.send({
       status: "error",
@@ -9,4 +9,4 @@ const loginEmployees = (req, resp, next) => {
   }
 };
 
-module.exports = loginEmployees;
+module.exports = loginEmpControllers;
