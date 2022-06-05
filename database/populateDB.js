@@ -11,8 +11,9 @@ const populateDB = async () => {
 
     console.log("Inserting admin in employees...");
     await pool.query(`
-      INSERT INTO employees (email, password, role, name)
+      INSERT INTO employees (id, email, password, role, name)
       VALUES (
+          1,
           "${ADMIN_EMAIL}",
           "${ADMIN_PASSWORD}",
           "admin",
@@ -36,7 +37,28 @@ const populateDB = async () => {
             "${email}",
             "${password}",
             "${name}",
-            "${registrationCode}"         
+            "${registrationCode}"
+         );
+      `);
+    }
+
+    console.log("Inserting exercises");
+
+    const exercises = 10;
+
+    for (let index = 0; index < exercises; index++) {
+      const employeeId = 1;
+      const title = faker.lorem.words(3);
+      const description = faker.lorem.words(5);
+      const type = faker.lorem.words(3);
+
+      await pool.query(`
+          INSERT INTO exercises (employee_id, title, description, type)
+          VALUES (
+            "${employeeId}",
+            "${title}",
+            "${description}",
+            "${type}"
          );
       `);
     }
