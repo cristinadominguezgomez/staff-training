@@ -24,7 +24,7 @@ app.post("/login", loginEmpControllers); //loginEmp
 
 //rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)
 // app.get("/", getExercisesController);
-// app.post("/", newExcerciseController);
+//app.post("/exercises", newExerciseController);
 // app.get("/excercise/:id", getUnicoExerciseController);
 // app.delete("/excercise/:id", deleteExcercisesController);
 
@@ -50,4 +50,3 @@ app.use((error, req, resp, next) => {
 app.listen(3000, () => {
   console.log(`Server listening on http://localhost:${SERVER_PORT}`);
 });
- 
