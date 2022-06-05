@@ -36,7 +36,7 @@ const populateDB = async () => {
             "${email}",
             "${password}",
             "${name}",
-            "${registrationCode}"         
+            "${registrationCode}"
          );
       `);
     }
