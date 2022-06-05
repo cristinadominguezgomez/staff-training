@@ -8,6 +8,7 @@ const {
   loginEmpControllers,
   activateEmpControllers,
   getEmpByIdController,
+  getEmployeesController,
 } = require("./controllers/employees"); //trae las funciones desde el index controllers
 
 const app = express();
@@ -16,10 +17,10 @@ app.use(express.json()); //procesa los datos en formato json
 
 //rutas de employees
 app.post("/employees", registerEmpController); //registerEmp
-app.put("/employees/activate/:registrationCode", activateEmpControllers); //es put porque modificamos al bd puede ser get tambien
-// app.get("/employees/:id", getEmployeesController); //
-app.post("/login", loginEmpControllers); //loginEmp
+app.get("/employees", getEmployeesController); //getEmpAll
 app.get("/employees/:id", getEmpByIdController); //getEmpById
+app.put("/employees/activate/:registrationCode", activateEmpControllers); //es put porque modificamos al bd puede ser get tambien
+app.post("/login", loginEmpControllers); //loginEmp
 
 //rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)
 // app.get("/", getExercisesController);
