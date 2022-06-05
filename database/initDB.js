@@ -32,10 +32,12 @@ const initDB = async () => {
             id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             title VARCHAR(100) NOT NULL,
             description VARCHAR(500) NOT NULL,
+            type VARCHAR(100),
+            muscle_group VARCHAR(50),
             image VARCHAR(100),
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            employeed_id INT UNSIGNED NOT NULL,
-            FOREIGN KEY (employeed_id) REFERENCES employees(id)
+            employee_id INT UNSIGNED NOT NULL,
+            FOREIGN KEY (employee_id) REFERENCES employees(id)
             );
             `);
 
