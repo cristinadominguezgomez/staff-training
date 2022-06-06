@@ -38,6 +38,7 @@ const populateDB = async () => {
             "${password}",
             "${name}",
             "${registrationCode}"
+
          );
       `);
     }
@@ -59,6 +60,7 @@ const populateDB = async () => {
             "${title}",
             "${description}",
             "${type}"
+
          );
       `);
     }
