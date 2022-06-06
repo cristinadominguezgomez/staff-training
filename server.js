@@ -13,6 +13,10 @@ const {
   deleteEmpByIdController,
 } = require("./controllers/employees"); //trae las funciones desde el index controllers
 
+const {
+  getExercisesController
+} = require("./controllers/exercises")
+
 const app = express();
 
 app.use(express.json()); //procesa los datos en formato json
@@ -27,7 +31,7 @@ app.put("/employees/activate/:registrationCode", activateEmpControllers); //es p
 app.post("/login", loginEmpControllers); //loginEmp
 
 //rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)
-// app.get("/", getExercisesController);
+app.get("/exercises", getExercisesController);
 //app.post("/exercises", newExerciseController);
 // app.get("/excercise/:id", getUnicoExerciseController);
 // app.delete("/excercise/:id", deleteExcercisesController);
