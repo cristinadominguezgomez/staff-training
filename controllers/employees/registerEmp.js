@@ -8,9 +8,7 @@ const registerEmpController = async (req, res, next) => {
   try {
     /** Nos traemos el email y la password del body */
     const { email, password, name } = req.body;
-    /**nos traemos el avatar */
-    const { avatar } = req.files;
-    //console.log(req.files, "patata");
+
     const encryptedPassword = await bcrypt.hash(password, 10);
 
     const registrationCode = uuidv4();
@@ -21,14 +19,19 @@ const registerEmpController = async (req, res, next) => {
       error.statusCode = 400;
       throw error;
     }
+
     let avatarName;
-    if (avatar) {
+    if (req.files) {
+      const { avatar } = req.files;
       const sharpAvatar = sharp(avatar.data);
       const avatarMetadata = await sharpAvatar.metadata();
-      avatarName = `${uuidv4()}.${avatarMetadata.format}`;
+
       if (avatarMetadata.width > 800) {
         sharpAvatar.resize(800);
       }
+
+      avatarName = `${uuidv4()}.${avatarMetadata.format}`;
+
       const avatarPath = path.join(
         __dirname,
         "../",
@@ -37,7 +40,7 @@ const registerEmpController = async (req, res, next) => {
         avatarName
       );
 
-      console.log(avatarPath, "PATATA");
+      //console.log(avatarPath, "PATATA");
 
       await sharpAvatar.toFile(avatarPath);
     }
