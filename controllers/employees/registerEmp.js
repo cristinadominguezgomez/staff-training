@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
+const sharp = require("sharp");
+const path = require("path");
 const insertEmp = require("../../repositories/employees/insertEmp");
 
 const registerEmpController = async (req, res, next) => {
@@ -18,12 +20,38 @@ const registerEmpController = async (req, res, next) => {
       throw error;
     }
 
+    let avatarName;
+    if (req.files) {
+      const { avatar } = req.files;
+      const sharpAvatar = sharp(avatar.data);
+      const avatarMetadata = await sharpAvatar.metadata();
+
+      if (avatarMetadata.width > 800) {
+        sharpAvatar.resize(800);
+      }
+
+      avatarName = `${uuidv4()}.${avatarMetadata.format}`;
+
+      const avatarPath = path.join(
+        __dirname,
+        "../",
+        "../",
+        "uploads",
+        avatarName
+      );
+
+      //console.log(avatarPath, "PATATA");
+
+      await sharpAvatar.toFile(avatarPath);
+    }
+
     /** Insertamos los datos del usuario en la base de datos */
     const data = await insertEmp({
       email,
       encryptedPassword,
       name,
       registrationCode,
+      avatarName,
     });
 
     /** Enviamos la respuesta con código 201 y un JSON que contiene los datos del usuario registrado */
