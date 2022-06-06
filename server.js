@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const fileUpload = require("express-fileupload");
 
 const { SERVER_PORT } = process.env;
 
@@ -14,6 +15,7 @@ const {
 const app = express();
 
 app.use(express.json()); //procesa los datos en formato json
+app.use(fileUpload());
 
 //rutas de employees
 app.post("/employees", registerEmpController); //registerEmp

@@ -5,14 +5,15 @@ const insertEmp = async ({
   encryptedPassword,
   name,
   registrationCode,
+  avatarName,
 }) => {
   /** Nos traemos el pool */
   const pool = getPool();
 
   /** Realizamos una query donde insertamos un nuevo usuario con los datos recibidos por parámetro */
   const [{ insertId }] = await pool.query(
-    "INSERT INTO employees (email, password, name, registrationCode) VALUES (?, ?, ?, ?)",
-    [email, encryptedPassword, name, registrationCode]
+    "INSERT INTO employees (email, password, name, registrationCode, avatar) VALUES (?, ?, ?, ?, ?)",
+    [email, encryptedPassword, name, registrationCode, avatarName]
   );
 
   /** Retornamos el id del nuevo usuariio creado */

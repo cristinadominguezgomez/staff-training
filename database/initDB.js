@@ -20,7 +20,7 @@ const initDB = async () => {
         password VARCHAR(100) NOT NULL,
         role ENUM("normal", "admin") DEFAULT "normal",
         name VARCHAR(100),
-        avatar VARCHAR(200),
+        avatar VARCHAR(300),
         registrationCode VARCHAR(100),
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP)
       `);
