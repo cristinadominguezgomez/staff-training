@@ -17,6 +17,7 @@ const {
   getExercisesController,
   getExerciseById,
   deleteExerciseById,
+  putExercise,
 } = require("./controllers/exercises");
 
 const app = express();
@@ -38,6 +39,8 @@ app.get("/exercises", getExercisesController);
 app.get("/exercise/:id", getExerciseById);
 //app.put("/exercise/:id", patchExercise);
 app.delete("/exercise/:id", deleteExerciseById);
+app.put("/exercise/:id", putExercise);
+// app.delete("/excercise/:id", deleteExcercisesController);
 
 //middleware de 404
 app.use((req, resp) => {
