@@ -14,8 +14,9 @@ const {
 } = require("./controllers/employees"); //trae las funciones desde el index controllers
 
 const {
-  getExercisesController
-} = require("./controllers/exercises")
+  getExercisesController,
+  getExerciseById,
+} = require("./controllers/exercises");
 
 const app = express();
 
@@ -33,7 +34,8 @@ app.post("/login", loginEmpControllers); //loginEmp
 //rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)
 app.get("/exercises", getExercisesController);
 //app.post("/exercises", newExerciseController);
-// app.get("/excercise/:id", getUnicoExerciseController);
+app.get("/exercise/:id", getExerciseById);
+//app.put("/exercise/:id", patchExercise);
 // app.delete("/excercise/:id", deleteExcercisesController);
 
 //middleware de 404
