@@ -6,7 +6,7 @@ const { SERVER_PORT } = process.env;
 
 const {
   registerEmpController,
-  loginEmpControllers,
+  loginEmp,
   activateEmpControllers,
   getEmpByIdController,
   getEmployeesController,
@@ -31,7 +31,7 @@ app.get("/employees", getEmployeesController); //getEmpAll
 app.get("/employees/:id", getEmpByIdController); //getEmpById
 app.delete("/employees/:id", deleteEmpByIdController);
 app.put("/employees/activate/:registrationCode", activateEmpControllers); //es put porque modificamos al bd puede ser get tambien
-app.post("/login", loginEmpControllers); //loginEmp
+app.post("/login", loginEmp);
 
 //rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)
 app.get("/exercises", getExercisesController);
