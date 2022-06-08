@@ -1,6 +1,6 @@
 const getPool = require("../../database/getPool");
 
-const selectUserByActivationCode = async (registrationCode) => {
+const selectEmpByActivationCode = async (registrationCode) => {
   const pool = getPool();
 
   const [[employee]] = await pool.query(
@@ -11,4 +11,4 @@ const selectUserByActivationCode = async (registrationCode) => {
   return employee;
 };
 
-module.exports = selectUserByActivationCode;
+module.exports = selectEmpByActivationCode;
