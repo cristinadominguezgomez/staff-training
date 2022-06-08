@@ -4,6 +4,7 @@ const selectEmpAll = require("./selectEmpAll");
 const removeEmpById = require("./removeEmpById");
 const selectEmpByActivationCode = require("./selectEmpByActivationCode");
 const deleteRegistrationCode = require("./deleteRegistrationCode");
+const selectEmpByEmail = require("./selecEmpByEmail");
 
 module.exports = {
   insertEmp,
@@ -12,4 +13,5 @@ module.exports = {
   removeEmpById,
   selectEmpByActivationCode,
   deleteRegistrationCode,
+  selectEmpByEmail,
 };
