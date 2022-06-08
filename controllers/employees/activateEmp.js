@@ -1,26 +1,28 @@
-const { generateError } = require("../../helpers/errorControllers");
-
 const {
-  selectUserByActivationCode,
-} = require("../../repositories/employees/selectEmpActivationCode");
+  selectEmpByActivationCode,
+  deleteRegistrationCode,
+} = require("../../repositories/employees");
 
 //este controlador informa si el empleado esta activado o no.
 
-const activateEmpControllers = (req, resp, next) => {
+const activateEmpController = async (req, res, next) => {
   try {
     const { registrationCode } = req.params;
-    const employee = selectUserByActivationCode(registrationCode);
+
+    const employee = await selectEmpByActivationCode(registrationCode);
 
     if (!employee) {
-      const error = new Error(
-        "NO hay usuarios sin activar con ese codigo de registro"
-      );
+      const error = new Error("Invalid registration code or already activated");
       error.statusCode = 404;
       throw error;
     }
+
+    await deleteRegistrationCode(employee.id);
+
+    res.status(200).send({ status: "ok", message: "Employee activated" });
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = activateEmpControllers;
+module.exports = activateEmpController;
