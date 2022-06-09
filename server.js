@@ -4,6 +4,8 @@ const fileUpload = require("express-fileupload");
 
 const { SERVER_PORT } = process.env;
 
+const auth = require("./helpers/auth");
+
 const {
   registerEmpController,
   loginEmp,
@@ -18,6 +20,7 @@ const {
   getExerciseById,
   deleteExerciseById,
   putExercise,
+  newExercise,
 } = require("./controllers/exercises");
 
 const app = express();
@@ -35,7 +38,8 @@ app.post("/login", loginEmp);
 
 //rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)
 app.get("/exercises", getExercisesController);
-//app.post("/exercises", newExerciseController);
+app.post("/exercises", auth, newExercise);
+
 app.get("/exercise/:id", getExerciseById);
 //app.put("/exercise/:id", patchExercise);
 app.delete("/exercise/:id", deleteExerciseById);
