@@ -16,10 +16,11 @@ const {
 } = require("./controllers/employees"); //trae las funciones desde el index controllers
 
 const {
-  getExercisesController,
+  getExercisesAll,
   getExerciseById,
   deleteExerciseById,
   putExercise,
+  patchEditExercises,
   newExercise,
 } = require("./controllers/exercises");
 
@@ -37,11 +38,11 @@ app.put("/employees/activate/:registrationCode", activateEmpControllers); //es p
 app.post("/login", loginEmp);
 
 //rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)
-app.get("/exercises", getExercisesController);
+app.get("/exercises", getExercisesAll);
 app.post("/exercises", auth, newExercise);
 
 app.get("/exercise/:id", getExerciseById);
-//app.put("/exercise/:id", patchExercise);
+app.patch("/exercise/:id", auth, patchEditExercises);
 app.delete("/exercise/:id", deleteExerciseById);
 app.put("/exercise/:id", putExercise);
 // app.delete("/excercise/:id", deleteExcercisesController);
