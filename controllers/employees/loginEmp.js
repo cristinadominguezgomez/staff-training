@@ -40,9 +40,9 @@ const loginEmp = async (req, resp, next) => {
       role: employee.role,
     };
 
-    const token = jwt.sign(payload, process.env.SECRET);
+    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "30d" });
 
-    resp.status(200).send({ status: "ok", data: { token } });
+    resp.status(200).send({ status: "ok", data: token });
   } catch (error) {
     next(error);
   }
