@@ -1,6 +1,6 @@
 const getPool = require("../../database/getPool");
 
-const selectExerAll = async () => {
+const selectExercisesAll = async () => {
   const pool = getPool();
 
   const [exercises] = await pool.query("SELECT * FROM exercises");
@@ -8,4 +8,4 @@ const selectExerAll = async () => {
   return exercises;
 };
 
-module.exports = selectExerAll;
+module.exports = selectExercisesAll;
