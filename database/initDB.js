@@ -46,8 +46,6 @@ const initDB = async () => {
     await pool.query(`
     CREATE TABLE likes (
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        description VARCHAR(500) NOT NULL,
-        image VARCHAR(100),
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         employee_id INT UNSIGNED NOT NULL,
         FOREIGN KEY (employee_id) REFERENCES employees(id),
