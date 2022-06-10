@@ -1,6 +1,7 @@
 require("dotenv").config();
 const getPool = require("./getPool");
 const faker = require("faker");
+const { random } = require("lodash");
 const { v4: uuidv4 } = require("uuid");
 
 const { ADMIN_NAME, ADMIN_PASSWORD, ADMIN_EMAIL } = process.env;
@@ -60,10 +61,29 @@ const populateDB = async () => {
             "${title}",
             "${description}",
             "${type}"
-
          );
       `);
     }
+
+    console.log("Inserting likes");
+
+    // const num_likes = 20;
+
+    // for (let index = 0; index < num_likes; index++) {
+    //   const employeeId = random(2, employees + 1);
+    //   const exerciseId = random(2, exercises + 1);
+    //   const description = faker.lorem.paragraph();
+
+    //   console.log(employeeId);
+    //   console.log(exerciseId);
+    //   await pool.query(`
+    //   INSERT INTO likes (description, employee_id)
+    //   VALUES (
+    //               "${description}",
+    //               "${employeeId}"
+    //   );
+    //   `);
+    // }
 
     console.log("¡All done!");
   } catch (error) {
