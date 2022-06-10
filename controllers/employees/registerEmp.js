@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
-const sharp = require("sharp");
-const path = require("path");
 const insertEmp = require("../../repositories/employees/insertEmp");
+const processImage = require("../../helpers/processImage");
+const sendMail = require("../../helpers/sendMail");
 
 const registerEmpController = async (req, res, next) => {
   try {
@@ -13,7 +13,7 @@ const registerEmpController = async (req, res, next) => {
 
     const registrationCode = uuidv4();
 
-    /** Si falta el email, la password o el avatar, lanzamos un error */
+    /** Si falta el email, la password o el name, lanzamos un error */
     if (!(email && password && name)) {
       const error = new Error("User email, password and name are required");
       error.statusCode = 400;
@@ -21,28 +21,10 @@ const registerEmpController = async (req, res, next) => {
     }
 
     let avatarName;
-    if (req.files) {
+
+    if (req.files && req.files.avatar) {
       const { avatar } = req.files;
-      const sharpAvatar = sharp(avatar.data);
-      const avatarMetadata = await sharpAvatar.metadata();
-
-      if (avatarMetadata.width > 800) {
-        sharpAvatar.resize(800);
-      }
-
-      avatarName = `${uuidv4()}.${avatarMetadata.format}`;
-
-      const avatarPath = path.join(
-        __dirname,
-        "../",
-        "../",
-        "uploads",
-        avatarName
-      );
-
-      //console.log(avatarPath, "PATATA");
-
-      await sharpAvatar.toFile(avatarPath);
+      avatarName = await processImage(avatar.data);
     }
 
     /** Insertamos los datos del usuario en la base de datos */
@@ -53,6 +35,16 @@ const registerEmpController = async (req, res, next) => {
       registrationCode,
       avatarName,
     });
+
+    //Enviamos un email para la activacion
+    const { SERVER_HOST, SERVER_PORT } = process.env;
+
+    await sendMail(
+      "Welcome! In this space you will find all the necessary exercises to organize your class.",
+      `<p>Activate your account here:</p>
+      <a href="http://${SERVER_HOST}:${SERVER_PORT}/employees/activate/${registrationCode}">ACTIVATES</a>`,
+      email
+    );
 
     /** Enviamos la respuesta con código 201 y un JSON que contiene los datos del usuario registrado */
     res.status(201).send({
