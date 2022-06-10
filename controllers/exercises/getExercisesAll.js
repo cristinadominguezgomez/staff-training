@@ -1,8 +1,11 @@
-const selectExerAll = require("../../repositories/exercises/selectExercisesAll");
+const selectExerciseAll = require("../../repositories/exercises/selectExercisesAll");
 
 const getExercisesAll = async (req, res, next) => {
+
   try {
-    const employees = await selectExerAll();
+
+    const query = req.query
+    const employees = await selectExerciseAll(query);
 
     res.status(200).send({ status: "ok", data: employees });
   } catch (error) {

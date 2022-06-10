@@ -39,6 +39,7 @@ app.post("/login", loginEmp);
 
 //rutas de excercises
 app.get("/exercises", getExercisesAll);
+// app.get("/exercises/:search", getExercisesFilter);
 app.post("/exercises", auth, newExercise);
 
 app.get("/exercise/:id", getExerciseById);
