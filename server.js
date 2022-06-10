@@ -34,10 +34,10 @@ app.post("/employees", registerEmpController); //registerEmp
 app.get("/employees", getEmployeesController); //getEmpAll
 app.get("/employees/:id", getEmpByIdController); //getEmpById
 app.delete("/employees/:id", deleteEmpByIdController);
-app.put("/employees/activate/:registrationCode", activateEmpControllers); //es put porque modificamos al bd puede ser get tambien
+app.get("/employees/activate/:registrationCode", activateEmpControllers);
 app.post("/login", loginEmp);
 
-//rutas de excercises (FALTA CREAR LOS FICHEROS PARA TODAS ESTAS RUTAS)
+//rutas de excercises
 app.get("/exercises", getExercisesAll);
 app.post("/exercises", auth, newExercise);
 
