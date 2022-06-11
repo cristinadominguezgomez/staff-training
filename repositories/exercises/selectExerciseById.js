@@ -7,6 +7,7 @@ const selectExerciseById = async (id) => {
     "SELECT * FROM exercises WHERE id = ?",
     [id]
   );
+  // console.log(exercise, "data exercise")
   return exercise;
 };
 

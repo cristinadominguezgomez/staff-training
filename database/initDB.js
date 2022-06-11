@@ -18,6 +18,7 @@ const initDB = async () => {
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         email VARCHAR(100) UNIQUE NOT NULL,
         password VARCHAR(100) NOT NULL,
+        active BOOLEAN DEFAULT false,
         role ENUM("normal", "admin") DEFAULT "normal",
         name VARCHAR(100),
         avatar VARCHAR(300),
