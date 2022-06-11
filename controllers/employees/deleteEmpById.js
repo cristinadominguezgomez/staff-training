@@ -1,9 +1,10 @@
 const removeEmpById = require("../../repositories/employees/removeEmpById");
+const idEmployeeSchema = require("../../schemas/idEmployeeSchema");
 
 const deleteEmpByIdController = async (req, res, next) => {
   try {
     const { id } = req.params;
-
+    await idEmployeeSchema.validateAsync(id);
     const affectedRows = await removeEmpById(id);
 
     if (affectedRows === 0) {

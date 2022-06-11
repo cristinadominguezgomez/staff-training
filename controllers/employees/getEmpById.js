@@ -1,8 +1,11 @@
 const selectEmpById = require("../../repositories/employees/selectEmpById");
+const idEmployeeSchema = require("../../schemas/idEmployeeSchema");
 
 const getEmpByIdController = async (req, res, next) => {
   try {
     const { id: employeeId } = req.params;
+
+    await idEmployeeSchema.validateAsync(employeeId);
 
     const employee = await selectEmpById(employeeId);
 
@@ -23,7 +26,7 @@ const getEmpByIdController = async (req, res, next) => {
       //   registrationCode: employee.registrationCode,
       //   created_at: employee.created_at,
       // },
-      data: employee
+      data: employee,
     });
   } catch (error) {
     next(error);

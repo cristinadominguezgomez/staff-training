@@ -3,15 +3,16 @@ const {
   updateExerciseById,
 } = require("../../repositories/exercises");
 
+const uploadExerciseSchema = require("../../schemas/uploadExerciseSchema");
+const idExerciseSchema = require("../../schemas/idExerciseSchema");
 const { generateError } = require("../../helpers");
-// const { editEntrySchema, idEntrySchema } = require("../../schemas/entries");
 
 const patchEditExercises = async (req, res, next) => {
   try {
+    await idExerciseSchema.validateAsync(req.params);
     const { id } = req.params;
-    // await idEntrySchema.validateAsync(idEntry);
 
-    // await editEntrySchema.validateAsync(req.body);
+    await uploadExerciseSchema.validateAsync(req.body);
 
     const ExercisesDB = await selectExerciseById(id);
 
