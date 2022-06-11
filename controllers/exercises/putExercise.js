@@ -3,10 +3,15 @@ const {
   selectExerciseById,
 } = require("../../repositories/exercises");
 
+const uploadExerciseSchema = require("../../schemas/uploadExerciseSchema");
+const idExerciseSchema = require("../../schemas/idExerciseSchema");
+
 const putExercise = async (req, res, next) => {
   try {
+    await idExerciseSchema.validateAsync(req.params);
     const { id } = req.params;
 
+    await uploadExerciseSchema.validateAsync(req.body);
     const { title, description, type, muscle_group } = req.body;
 
     const exerciseData = { id, title, description, type, muscle_group };
@@ -20,7 +25,6 @@ const putExercise = async (req, res, next) => {
     }
 
     const affectedRows = await updateExercise(exerciseData);
-    console.log(affectedRows);
     res.status(200).send({ status: "ok", data: exerciseData });
   } catch (error) {
     next(error);

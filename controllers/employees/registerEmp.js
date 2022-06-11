@@ -1,11 +1,12 @@
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const insertEmp = require("../../repositories/employees/insertEmp");
-const processImage = require("../../helpers/processImage");
-const sendMail = require("../../helpers/sendMail");
+const { processImage, sendMail } = require("../../helpers");
+const newEmployeeSchema = require("../../schemas/newEmployeeSchema");
 
 const registerEmpController = async (req, res, next) => {
   try {
+    await newEmployeeSchema.validateAsync(req.body);
     /** Nos traemos el email y la password del body */
     const { email, password, name } = req.body;
 

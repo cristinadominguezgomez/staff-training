@@ -1,15 +1,17 @@
 // const { generateError } = require("../../helpers");
 const { generateError } = require("../../helpers");
 const { selectExerciseById } = require("../../repositories/exercises");
+const idExerciseSchema = require("../../schemas/idExerciseSchema");
 
 const getExerciseById = async (req, res, next) => {
   try {
+    await idExerciseSchema.validateAsync(req.params);
     const { id: exerciseId } = req.params;
 
     const exercise = await selectExerciseById(exerciseId);
 
     if (!exercise) {
-      generateError(`The exercise with id: ${exerciseId} does not exist`, 404)
+      generateError(`The exercise with id: ${exerciseId} does not exist`, 404);
     }
 
     res.status(200).send({

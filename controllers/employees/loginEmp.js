@@ -3,9 +3,12 @@ const generateError = require("../../helpers/generateError");
 const selectEmpByEmail = require("../../repositories/employees/selecEmpByEmail");
 
 const jwt = require("jsonwebtoken");
+const newEmployeeSchema = require("../../schemas/newEmployeeSchema");
 
 const loginEmp = async (req, resp, next) => {
   try {
+    newEmployeeSchema.validateAsync(req.body);
+
     const { email, password } = req.body;
 
     if (!(email && password)) {

@@ -1,7 +1,9 @@
 const removeExerciseById = require("../../repositories/exercises/removeExerciseById");
+const idExerciseSchema = require("../../schemas/idExerciseSchema");
 
 const deleteExerciseById = async (req, res, next) => {
   try {
+    await idExerciseSchema.validateAsync(req.params);
     const { id } = req.params;
 
     const affectedRows = await removeExerciseById(id);
