@@ -2,6 +2,7 @@ require("dotenv").config();
 const getPool = require("./getPool");
 const faker = require("faker");
 const { v4: uuidv4 } = require("uuid");
+const bcrypt = require("bcrypt");
 
 const { ADMIN_NAME, ADMIN_PASSWORD, ADMIN_EMAIL } = process.env;
 
@@ -10,15 +11,21 @@ const populateDB = async () => {
     const pool = getPool();
 
     console.log("Inserting admin in employees...");
+
+    let password = ADMIN_PASSWORD;
+
+    password = await bcrypt.hash(password, 10);
+
     await pool.query(`
-      INSERT INTO employees (id, email, password, role, name)
+      INSERT INTO employees (id, email, password, active, role, name)
       VALUES (
           1,
           "${ADMIN_EMAIL}",
-          "${ADMIN_PASSWORD}",
+          "${password}",
+          true,
           "admin",
           "${ADMIN_NAME}"
-    );
+      );
     `);
 
     console.log("Inserting employees");
@@ -38,7 +45,6 @@ const populateDB = async () => {
             "${password}",
             "${name}",
             "${registrationCode}"
-
          );
       `);
     }

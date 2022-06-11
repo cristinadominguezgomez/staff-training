@@ -24,6 +24,8 @@ const {
   newExercise,
 } = require("./controllers/exercises");
 
+// const checkAdmin = require("./middlewares/checkAdmin");
+
 const app = express();
 
 app.use(express.json()); //procesa los datos en formato json
