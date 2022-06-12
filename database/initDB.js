@@ -49,9 +49,9 @@ const initDB = async () => {
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         employee_id INT UNSIGNED NOT NULL,
-        FOREIGN KEY (employee_id) REFERENCES employees(id),
+        FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE,
         exercise_id INT UNSIGNED NOT NULL,
-        FOREIGN KEY (exercise_id) REFERENCES exercises(id)
+        FOREIGN KEY (exercise_id) REFERENCES exercises(id) ON DELETE CASCADE
         );
         `);
 
