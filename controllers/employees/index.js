@@ -1,4 +1,4 @@
-const activateEmpControllers = require("./activateEmp");
+const activateEmployee = require("./activateEmployee");
 
 const registerEmployees = require("./registerEmployees");
 
@@ -8,13 +8,13 @@ const getEmployeesAll = require("./getEmployeesAll");
 
 const loginEmployees = require("./loginEmployees");
 
-const deleteEmpById = require("./deleteEmpById");
+const deleteEmployeeById = require("./deleteEmployeeById");
 
 module.exports = {
-  activateEmpControllers,
+  activateEmployee,
   registerEmployees,
   loginEmployees,
   getEmployeeById,
-  deleteEmpById,
+  deleteEmployeeById,
   getEmployeesAll,
 };

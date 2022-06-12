@@ -25,7 +25,8 @@ const putExercise = async (req, res, next) => {
       throw error;
     }
 
-    const affectedRows = await updateExercise(exerciseData);
+    await updateExercise(exerciseData);
+
     res.status(200).send({ status: "ok", data: exerciseData });
   } catch (error) {
     next(error);
