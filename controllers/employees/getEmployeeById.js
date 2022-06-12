@@ -17,15 +17,6 @@ const getEmployeeById = async (req, res, next) => {
 
     res.status(200).send({
       status: "ok",
-      // data: {
-      //   id: employee.id,
-      //   avatar: employee.avatar,
-      //   email: employee.email,
-      //   name: employee.name,
-      //   role: employee.role,
-      //   registrationCode: employee.registrationCode,
-      //   created_at: employee.created_at,
-      // },
       data: employee,
     });
   } catch (error) {

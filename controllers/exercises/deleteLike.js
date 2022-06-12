@@ -10,7 +10,6 @@ const deleteLike = async (req, res, next) => {
     const likeId = await idExerciseSchema.validateAsync(id);
 
     const { employee_id: whoLiked } = await selectLikeExercise(likeId);
-
     const loginEmployeeId = req.auth.id;
 
     if (whoLiked !== loginEmployeeId) {

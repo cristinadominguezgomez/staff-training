@@ -3,9 +3,7 @@ const {
   deleteRegistrationCode,
 } = require("../../repositories/employees");
 
-//este controlador informa si el empleado esta activado o no.
-
-const activateEmpController = async (req, res, next) => {
+const activateEmployee = async (req, res, next) => {
   try {
     const { registrationCode } = req.params;
 
@@ -25,4 +23,4 @@ const activateEmpController = async (req, res, next) => {
   }
 };
 
-module.exports = activateEmpController;
+module.exports = activateEmployee;
