@@ -8,10 +8,11 @@ const idExerciseSchema = require("../../schemas/idExerciseSchema");
 
 const putExercise = async (req, res, next) => {
   try {
-    await idExerciseSchema.validateAsync(req.params);
     const { id } = req.params;
 
+    await idExerciseSchema.validateAsync(id);
     await uploadExerciseSchema.validateAsync(req.body);
+
     const { title, description, type, muscle_group } = req.body;
 
     const exerciseData = { id, title, description, type, muscle_group };

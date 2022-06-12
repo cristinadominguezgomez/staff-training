@@ -5,6 +5,7 @@ const deleteEmpByIdController = async (req, res, next) => {
   try {
     const { id } = req.params;
     await idEmployeeSchema.validateAsync(id);
+
     const affectedRows = await removeEmpById(id);
 
     if (affectedRows === 0) {

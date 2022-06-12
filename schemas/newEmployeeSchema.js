@@ -1,4 +1,4 @@
-const Joi = require("@hapi/joi");
+const Joi = require("joi");
 
 const newEmployeeSchema = Joi.object({
   email: Joi.string().email().min(6).max(150).required(),
