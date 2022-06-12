@@ -5,7 +5,7 @@ const selectEmpByEmail = require("../../repositories/employees/selecEmpByEmail")
 const jwt = require("jsonwebtoken");
 const newEmployeeSchema = require("../../schemas/newEmployeeSchema");
 
-const loginEmp = async (req, resp, next) => {
+const loginEmployees = async (req, resp, next) => {
   try {
     newEmployeeSchema.validateAsync(req.body);
 
@@ -51,4 +51,4 @@ const loginEmp = async (req, resp, next) => {
   }
 };
 
-module.exports = loginEmp;
+module.exports = loginEmployees;
