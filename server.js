@@ -23,6 +23,7 @@ const {
   patchEditExercises,
   newExercise,
   createLike,
+  deleteLike,
 } = require("./controllers/exercises");
 
 // const checkAdmin = require("./middlewares/checkAdmin");
@@ -42,7 +43,7 @@ app.post("/login", loginEmp);
 
 //rutas de excercises
 app.get("/exercises", getExercisesAll);
-// app.get("/exercises/:search", getExercisesFilter);
+// app.get("/exercises/:search", getExercisesFilter;
 app.post("/exercises", auth, newExercise);
 app.get("/exercise/:id", getExerciseById);
 app.patch("/exercise/:id", auth, patchEditExercises);
@@ -50,6 +51,7 @@ app.delete("/exercise/:id", auth, deleteExerciseById);
 app.put("/exercise/:id", auth, putExercise);
 // app.delete("/excercise/:id", deleteExcercisesController);
 app.post("/exercise/:id/likes", auth, createLike);
+app.post("/exercise/:id/deletelikes", auth, deleteLike);
 
 //middleware de 404
 app.use((req, resp) => {

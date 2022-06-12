@@ -6,12 +6,13 @@ const insertExercise = async ({
   type,
   muscle_group,
   employeeId,
+  imageExercise,
 }) => {
   const pool = getPool();
 
   const [{ insertId }] = await pool.query(
-    "INSERT INTO exercises (title, description, type, muscle_group, employee_id) VALUES (?, ?, ?, ?, ?)",
-    [title, description, type, muscle_group, employeeId]
+    "INSERT INTO exercises (title, description, type, muscle_group, employee_id, image) VALUES (?, ?, ?, ?, ?, ?)",
+    [title, description, type, muscle_group, employeeId, imageExercise]
   );
 
   return insertId;

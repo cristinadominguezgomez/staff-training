@@ -1,3 +1,4 @@
+const { processImage } = require("../../helpers");
 const insertExercise = require("../../repositories/exercises/insertExercise");
 const newExerciseSchema = require("../../schemas/newExerciseSchema");
 
@@ -8,12 +9,19 @@ const newExercise = async (req, res, next) => {
 
     const employeeId = req.auth.id;
 
+    let imageExercise;
+    if (req.files && req.files.image) {
+      const { image } = req.files;
+      imageExercise = await processImage(image.data);
+    }
+
     const insertId = await insertExercise({
       title,
       description,
       type,
       muscle_group,
       employeeId,
+      imageExercise,
     });
 
     res.status(201).send({
@@ -26,6 +34,7 @@ const newExercise = async (req, res, next) => {
         type,
         muscle_group,
         employeeId,
+        imageExercise,
       },
     });
   } catch (error) {

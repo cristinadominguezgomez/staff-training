@@ -5,6 +5,8 @@ const updateExercise = require("./updateExercise");
 const updateExerciseById = require("./updateExerciseById");
 const insertExercise = require("./insertExercise");
 const insertLike = require("./insertLike");
+const removeLike = require("./removeLike");
+const selectLikeExercise = require("./selectLikeExercise");
 
 module.exports = {
   selectExerciseAll,
@@ -14,4 +16,6 @@ module.exports = {
   updateExerciseById,
   insertExercise,
   insertLike,
+  removeLike,
+  selectLikeExercise,
 };
