@@ -9,9 +9,9 @@ const { generateError } = require("../../helpers");
 
 const patchEditExercises = async (req, res, next) => {
   try {
-    await idExerciseSchema.validateAsync(req.params);
     const { id } = req.params;
 
+    await idExerciseSchema.validateAsync(id);
     await uploadExerciseSchema.validateAsync(req.body);
 
     const ExercisesDB = await selectExerciseById(id);

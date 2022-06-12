@@ -1,4 +1,4 @@
-const Joi = require("@hapi/joi");
+const Joi = require("joi");
 
 const newExerciseSchema = Joi.object({
   title: Joi.string().min(4).max(50).required(),

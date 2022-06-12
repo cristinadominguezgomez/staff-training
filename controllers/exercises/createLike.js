@@ -1,19 +1,25 @@
 const { selectExerciseById } = require("../../repositories/exercises");
 const generateError = require("../../helpers/generateError");
 const { insertLike } = require("../../repositories/exercises");
+const idExerciseSchema = require("../../schemas/idExerciseSchema");
+
 const createLike = async (req, res, next) => {
   try {
     const { id: exerciseId } = req.params;
 
-    const { employee_id } = await selectExerciseById(exerciseId);
+    await idExerciseSchema.validateAsync(exerciseId);
+
+    const { employee_id: admin } = await selectExerciseById(exerciseId);
+
+    const whoLikedId = req.auth.id;
 
     // si es admin no puede hacer like
 
-    if (employee_id === req.auth.id) {
+    if (admin === whoLikedId) {
       generateError("Can't do like in this exercise", 403);
     }
 
-    await insertLike(employee_id, exerciseId);
+    await insertLike(whoLikedId, exerciseId);
 
     res.status(200).send({ status: "ok", message: "Like" });
   } catch (error) {

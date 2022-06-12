@@ -1,5 +1,5 @@
-const Joi = require("@hapi/joi");
+const Joi = require("joi");
 
-const idExerciseSchema = Joi.number().positive().integer();
+const idExerciseSchema = Joi.number();
 
 module.exports = idExerciseSchema;

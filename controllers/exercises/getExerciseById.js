@@ -5,8 +5,9 @@ const idExerciseSchema = require("../../schemas/idExerciseSchema");
 
 const getExerciseById = async (req, res, next) => {
   try {
-    await idExerciseSchema.validateAsync(req.params);
     const { id: exerciseId } = req.params;
+
+    await idExerciseSchema.validateAsync(exerciseId);
 
     const exercise = await selectExerciseById(exerciseId);
 
