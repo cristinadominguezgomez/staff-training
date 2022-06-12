@@ -7,12 +7,12 @@ const { SERVER_PORT } = process.env;
 const auth = require("./helpers/auth");
 
 const {
-  registerEmpController,
-  loginEmp,
+  registerEmployees,
+  loginEmployees,
   activateEmpControllers,
-  getEmpByIdController,
-  getEmployeesController,
-  deleteEmpByIdController,
+  getEmployeeById,
+  getEmployeesAll,
+  deleteEmpById,
 } = require("./controllers/employees"); //trae las funciones desde el index controllers
 
 const {
@@ -26,7 +26,10 @@ const {
   deleteLike,
 } = require("./controllers/exercises");
 
-// const checkAdmin = require("./middlewares/checkAdmin");
+const {
+  checkAdmin,
+} = require("./middlewares");
+
 
 const app = express();
 
@@ -34,21 +37,21 @@ app.use(express.json()); //procesa los datos en formato json
 app.use(fileUpload());
 
 //rutas de employees
-app.post("/employees", registerEmpController); //registerEmp
-app.get("/employees", getEmployeesController); //getEmpAll
-app.get("/employees/:id", getEmpByIdController); //getEmpById
-app.delete("/employees/:id", deleteEmpByIdController);
+app.post("/employees", registerEmployees); //registerEmp
+app.get("/employees", getEmployeesAll); //getEmpAll
+app.get("/employees/:id", getEmployeeById); //getEmpById
+app.delete("/employees/:id", auth, checkAdmin, deleteEmpById);
 app.get("/employees/activate/:registrationCode", activateEmpControllers);
-app.post("/login", loginEmp);
+app.post("/login", loginEmployees);
 
 //rutas de excercises
 app.get("/exercises", getExercisesAll);
-// app.get("/exercises/:search", getExercisesFilter;
-app.post("/exercises", auth, newExercise);
+// app.get("/exercises/:search", getExercisesFilter);
+app.post("/exercises", auth, checkAdmin, newExercise);
 app.get("/exercise/:id", getExerciseById);
-app.patch("/exercise/:id", auth, patchEditExercises);
-app.delete("/exercise/:id", auth, deleteExerciseById);
-app.put("/exercise/:id", auth, putExercise);
+app.patch("/exercise/:id", auth, checkAdmin, patchEditExercises);
+app.delete("/exercise/:id", auth, checkAdmin, deleteExerciseById);
+app.put("/exercise/:id", auth, checkAdmin, putExercise);
 // app.delete("/excercise/:id", deleteExcercisesController);
 app.post("/exercise/:id/likes", auth, createLike);
 app.post("/exercise/:id/deletelikes", auth, deleteLike);

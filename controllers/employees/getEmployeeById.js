@@ -1,7 +1,7 @@
 const selectEmpById = require("../../repositories/employees/selectEmpById");
 const idEmployeeSchema = require("../../schemas/idEmployeeSchema");
 
-const getEmpByIdController = async (req, res, next) => {
+const getEmployeeById = async (req, res, next) => {
   try {
     const { id: employeeId } = req.params;
 
@@ -33,4 +33,4 @@ const getEmpByIdController = async (req, res, next) => {
   }
 };
 
-module.exports = getEmpByIdController;
+module.exports = getEmployeeById;

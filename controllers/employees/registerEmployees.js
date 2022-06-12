@@ -4,7 +4,7 @@ const insertEmp = require("../../repositories/employees/insertEmp");
 const { processImage, sendMail } = require("../../helpers");
 const newEmployeeSchema = require("../../schemas/newEmployeeSchema");
 
-const registerEmpController = async (req, res, next) => {
+const registerEmployees = async (req, res, next) => {
   try {
     await newEmployeeSchema.validateAsync(req.body);
     /** Nos traemos el email y la password del body */
@@ -59,4 +59,4 @@ const registerEmpController = async (req, res, next) => {
   }
 };
 
-module.exports = registerEmpController;
+module.exports = registerEmployees;

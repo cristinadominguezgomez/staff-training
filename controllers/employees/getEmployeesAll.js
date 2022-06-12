@@ -1,6 +1,6 @@
 const selectEmpAll = require("../../repositories/employees/selectEmpAll");
 
-const getEmployeesController = async (req, res, next) => {
+const getEmployeesAll = async (req, res, next) => {
   try {
     const employees = await selectEmpAll();
 
@@ -10,4 +10,4 @@ const getEmployeesController = async (req, res, next) => {
   }
 };
 
-module.exports = getEmployeesController;
+module.exports = getEmployeesAll;

@@ -1,20 +1,20 @@
 const activateEmpControllers = require("./activateEmp");
 
-const registerEmpController = require("./registerEmp");
+const registerEmployees = require("./registerEmployees");
 
-const getEmpByIdController = require("./getEmpById");
+const getEmployeeById = require("./getEmployeeById");
 
-const getEmployeesController = require("./getEmpAll");
+const getEmployeesAll = require("./getEmployeesAll");
 
-const loginEmp = require("./loginEmp");
+const loginEmployees = require("./loginEmployees");
 
-const deleteEmpByIdController = require("./deleteEmpById");
+const deleteEmpById = require("./deleteEmpById");
 
 module.exports = {
   activateEmpControllers,
-  registerEmpController,
-  loginEmp,
-  getEmpByIdController,
-  deleteEmpByIdController,
-  getEmployeesController,
+  registerEmployees,
+  loginEmployees,
+  getEmployeeById,
+  deleteEmpById,
+  getEmployeesAll,
 };

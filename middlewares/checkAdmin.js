@@ -1,45 +1,17 @@
-// const { generateError } = require("../middlewares");
-
-const { selectEmpById } = require("../repositories/employees");
-
-// const checkAdmin = async (req, res, next) => {
-//   try {
-//     if (req.auth.role !== "admin") {
-//       throw generateError("You must be an admin to delete an employee", 400);
-//     }
-
-//     next();
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// module.exports = checkAdmin;
+const { generateError } = require("../helpers");
 
 const checkAdmin = async (req, res, next) => {
+  const isAdmin = req.auth.role;
 
   try {
-    const { id } = req.params;
-    console.log(id,"este es el id")
-    // controlo si el usuario logeado puede modificar la entry
-    // controlar el usuario que creó la entry, si no es el mismo del token o admin --> error
-
-    const [current] = await selectEmpById(id);
-    console.log(current,"current");
-
-    if (
-      current[0].employee_id !== req.userAuth.id &&
-      req.userAuth.role !== "admin"
-    ) {
-      // ERROR
-      const error = new Error(
-        "No tienes los permisos para editar esta entrada"
+    if (isAdmin !== "admin") {
+      throw generateError(
+        "You must be an administrator to perform this action",
+        401
       );
-      error.httpStatus = 401;
-      throw error;
     }
-    next();
 
+    next();
   } catch (error) {
     next(error);
   }
