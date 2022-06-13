@@ -9,9 +9,14 @@ const createLike = async (req, res, next) => {
 
     await idExerciseSchema.validateAsync(exerciseId);
 
-    const { employee_id: admin } = await selectExerciseById(exerciseId);
+    const createLike =  await selectExerciseById(exerciseId);
+
+    if(!createLike) {
+       generateError("Exercises does not exist", 404);
+    }
 
     const whoLikedId = req.auth.id;
+    const { employee_id: admin } = createLike
 
     // si es admin no puede hacer like
 
