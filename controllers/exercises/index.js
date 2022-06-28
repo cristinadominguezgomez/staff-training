@@ -4,8 +4,7 @@ const deleteExerciseById = require("./deleteExerciseById");
 const putExercise = require("./putExercise");
 const patchEditExercises = require("./patchEditExercises");
 const newExercise = require("./newExercise");
-const createLike = require("./createLike");
-const deleteLike = require("./deleteLike");
+const toggleLike = require("./toggleLike");
 
 module.exports = {
   getExercisesAll,
@@ -14,6 +13,5 @@ module.exports = {
   putExercise,
   patchEditExercises,
   newExercise,
-  createLike,
-  deleteLike,
+  toggleLike,
 };

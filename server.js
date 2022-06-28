@@ -1,4 +1,6 @@
 require("dotenv").config();
+
+const cors = require("cors");
 const express = require("express");
 const fileUpload = require("express-fileupload");
 
@@ -22,13 +24,14 @@ const {
   putExercise,
   patchEditExercises,
   newExercise,
-  createLike,
-  deleteLike,
+  toggleLike,
 } = require("./controllers/exercises");
 
 const { checkAdmin } = require("./middlewares");
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(fileUpload());
@@ -48,8 +51,7 @@ app.get("/exercise/:id", getExerciseById);
 app.patch("/exercise/:id", auth, checkAdmin, patchEditExercises);
 app.delete("/exercise/:id", auth, checkAdmin, deleteExerciseById);
 app.put("/exercise/:id", auth, checkAdmin, putExercise);
-app.post("/exercise/:id/likes", auth, createLike);
-app.delete("/exercise/:id/deletelikes", auth, deleteLike);
+app.post("/exercise/:id/like", auth, toggleLike);
 
 //middleware de 404
 app.use((req, resp) => {
