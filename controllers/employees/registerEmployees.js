@@ -6,6 +6,7 @@ const newEmployeeSchema = require("../../schemas/newEmployeeSchema");
 
 const registerEmployees = async (req, res, next) => {
   try {
+    console.log(req.body)
     await newEmployeeSchema.validateAsync(req.body);
 
     const { email, password, name } = req.body;
