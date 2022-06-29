@@ -6,7 +6,6 @@ const newEmployeeSchema = require("../../schemas/newEmployeeSchema");
 
 const registerEmployees = async (req, res, next) => {
   try {
-    console.log(req.body)
     await newEmployeeSchema.validateAsync(req.body);
 
     const { email, password, name } = req.body;
@@ -14,12 +13,6 @@ const registerEmployees = async (req, res, next) => {
     const encryptedPassword = await bcrypt.hash(password, 10);
 
     const registrationCode = uuidv4();
-
-    if (!(email && password && name)) {
-      const error = new Error("User email, password and name are required");
-      error.statusCode = 400;
-      throw error;
-    }
 
     let avatarName;
 
