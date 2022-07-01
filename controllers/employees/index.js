@@ -10,6 +10,8 @@ const loginEmployees = require("./loginEmployees");
 
 const deleteEmployeeById = require("./deleteEmployeeById");
 
+const getMeEmployee = require("./getMeEmployee");
+
 module.exports = {
   activateEmployee,
   registerEmployees,
@@ -17,4 +19,5 @@ module.exports = {
   getEmployeeById,
   deleteEmployeeById,
   getEmployeesAll,
+  getMeEmployee,
 };

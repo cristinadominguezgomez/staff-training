@@ -15,6 +15,7 @@ const {
   getEmployeeById,
   getEmployeesAll,
   deleteEmployeeById,
+  getMeEmployee,
 } = require("./controllers/employees");
 
 const {
@@ -38,6 +39,9 @@ app.use(fileUpload());
 app.use(express.static("uploads")); // para acceder a cualquier fichero que este dentro de la carpeta uploads
 
 //rutas de employees
+
+app.get("/employees/me", auth, getMeEmployee);
+
 app.post("/employees", registerEmployees);
 app.get("/employees", getEmployeesAll);
 app.get("/employees/:id", getEmployeeById);
