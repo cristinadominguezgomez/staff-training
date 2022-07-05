@@ -1,11 +1,11 @@
 const getPool = require("../../database/getPool");
 
-const removeLike = async (whoLiked, exerciseId) => {
+const removeLike = async (employeeId, exerciseId) => {
   const pool = getPool();
 
   const [{ afectedRows }] = await pool.query(
     "DELETE FROM likes WHERE employee_id = ? AND exercise_id = ?",
-    [whoLiked, exerciseId]
+    [employeeId, exerciseId]
   );
 
   return afectedRows;
