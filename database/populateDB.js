@@ -57,16 +57,17 @@ const populateDB = async () => {
       const employeeId = 1;
       const title = faker.lorem.words(3);
       const description = faker.lorem.words(5);
+      const muscle_group = faker.lorem.words(5);
       const type = faker.lorem.words(3);
 
       await pool.query(`
-          INSERT INTO exercises (employee_id, title, description, type)
+          INSERT INTO exercises (employee_id, title, description, muscle_group, type)
           VALUES (
             "${employeeId}",
             "${title}",
             "${description}",
+            "${muscle_group}",
             "${type}"
-
          );
       `);
     }
