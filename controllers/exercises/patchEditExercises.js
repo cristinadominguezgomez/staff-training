@@ -31,13 +31,17 @@ const patchEditExercises = async (req, res, next) => {
 
     //actulizar la imagen
 
-    let imageExercise;
-    if (req.files && req.files.image) {
-      const { image } = req.files;
-      imageExercise = await processImage(image.data);
-    }
+     const editExercise = {
+       ...exercise,
+       ...req.body,
+     };
 
-    await updateExerciseById({ ...exercise, ...req.body, image: imageExercise });
+     if (req.files && req.files.image) {
+       const { image } = req.files;
+       editExercise.image = await processImage(image.data);
+     }
+
+     await updateExerciseById(editExercise);
 
     res.status(200).send({ status: "ok", message: "Exercise updated" });
   } catch (error) {

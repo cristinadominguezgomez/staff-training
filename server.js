@@ -36,7 +36,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use(fileUpload());
-app.use("/media", express.static("uploads")); // para acceder a cualquier fichero que este dentro de la carpeta uploads
+app.use(express.static("uploads")); // para acceder a cualquier fichero que este dentro de la carpeta uploads
 
 //rutas de employees
 
