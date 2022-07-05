@@ -1,11 +1,11 @@
 const getPool = require("../../database/getPool");
 
-const insertLike = async (employee_id, exerciseId) => {
+const insertLike = async (employeeId, exerciseId) => {
   const pool = getPool();
 
-  const [insertId] = await pool.query(
+  const [{ insertId }] = await pool.query(
     "INSERT INTO likes (employee_id, exercise_id) VALUES (?, ?)",
-    [employee_id, exerciseId]
+    [employeeId, exerciseId]
   );
 
   return insertId;
