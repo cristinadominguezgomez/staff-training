@@ -7,21 +7,23 @@ const selectExercisesAll = async (type, muscle_group) => {
     "SELECT e.*, COUNT(likes.id) likes FROM exercises e LEFT JOIN likes ON e.id = likes.exercise_id";
 
   const values = [];
-  let clause = "WHERE";
+  let clause = " WHERE";
 
   if (type) {
     query += `${clause} type LIKE ?`;
-    values.push(`${type}`);
+    values.push(`%${type}%`);
     clause = " AND";
   }
 
   if (muscle_group) {
     query += `${clause} muscle_group LIKE ?`;
-    values.push(`${muscle_group}`);
+    values.push(`%${muscle_group}%`);
     clause = " AND";
   }
 
-  query += " GROUP BY e.id";
+  query += ` GROUP BY e.id`;
+
+  console.log(query, "CASTILLO");
 
   const [ejercicios] = await pool.query(query, values);
 

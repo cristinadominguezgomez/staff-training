@@ -6,6 +6,8 @@ const getExercisesAll = async (req, res, next) => {
     const exercise = await selectExerciseAll(type, muscle_group);
 
     res.status(200).send({ status: "ok", data: exercise });
+
+    console.log(exercise, "ejercicio data");
   } catch (error) {
     next(error);
   }
