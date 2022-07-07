@@ -5,6 +5,7 @@ const putExercise = require("./putExercise");
 const patchEditExercises = require("./patchEditExercises");
 const newExercise = require("./newExercise");
 const toggleLike = require("./toggleLike");
+const checkEmployeeLike = require("./checkEmployeeLike");
 
 module.exports = {
   getExercisesAll,
@@ -14,4 +15,5 @@ module.exports = {
   patchEditExercises,
   newExercise,
   toggleLike,
+  checkEmployeeLike,
 };

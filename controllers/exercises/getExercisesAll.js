@@ -1,13 +1,13 @@
 const selectExerciseAll = require("../../repositories/exercises/selectExercisesAll");
 
 const getExercisesAll = async (req, res, next) => {
-
   try {
+    const { type, muscle_group } = req.query;
+    const exercise = await selectExerciseAll(type, muscle_group);
 
-    const query = req.query
-    const employees = await selectExerciseAll(query);
+    res.status(200).send({ status: "ok", data: exercise });
 
-    res.status(200).send({ status: "ok", data: employees });
+    console.log(exercise, "ejercicio data");
   } catch (error) {
     next(error);
   }

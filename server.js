@@ -26,6 +26,7 @@ const {
   patchEditExercises,
   newExercise,
   toggleLike,
+  checkEmployeeLike,
 } = require("./controllers/exercises");
 
 const { checkAdmin } = require("./middlewares");
@@ -57,6 +58,7 @@ app.patch("/exercise/:id", auth, checkAdmin, patchEditExercises);
 app.delete("/exercise/:id", auth, checkAdmin, deleteExerciseById);
 app.put("/exercise/:id", auth, checkAdmin, putExercise);
 app.post("/exercise/:id/like", auth, toggleLike);
+app.get("/exercise/:id/checkLike", auth, checkEmployeeLike);
 
 //middleware de 404
 app.use((req, resp) => {
