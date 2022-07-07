@@ -4,7 +4,7 @@ const selectExerciseById = async (id) => {
   const pool = getPool();
 
   const [[exercise]] = await pool.query(
-    "SELECT * FROM exercises WHERE id = ?",
+    "SELECT e.*, COUNT(l.id) likes FROM exercises e LEFT JOIN likes l ON e.id = l.exercise_id WHERE e.id = ?",
     [id]
   );
 

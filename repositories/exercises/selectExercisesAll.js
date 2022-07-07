@@ -1,25 +1,31 @@
 const getPool = require("../../database/getPool");
 
-const selectExercisesAll = async (filters) => {
+const selectExercisesAll = async (type, muscle_group) => {
   const pool = getPool();
 
-  let query = "SELECT * FROM exercises WHERE true";
+  let query =
+    "SELECT e.*, COUNT(likes.id) likes FROM exercises e LEFT JOIN likes ON e.id = likes.exercise_id";
 
-  let values = [];
+  const values = [];
+  let clause = "WHERE";
 
-  if (filters.type) {
-    query += " AND type = ?";
-    values.push(filters.type);
+  if (type) {
+    query += `${clause} type LIKE ?`;
+    values.push(`${type}`);
+    clause = " AND";
   }
 
-  if (filters.muscle_group) {
-    query += " AND muscle_group = ?";
-    values.push(filters.muscle_group);
+  if (muscle_group) {
+    query += `${clause} muscle_group LIKE ?`;
+    values.push(`${muscle_group}`);
+    clause = " AND";
   }
 
-  const [exercises] = await pool.query(query, values);
+  query += " GROUP BY e.id";
 
-  return exercises;
+  const [ejercicios] = await pool.query(query, values);
+
+  return ejercicios;
 };
 
 module.exports = selectExercisesAll;
