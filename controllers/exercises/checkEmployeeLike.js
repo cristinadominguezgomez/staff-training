@@ -3,9 +3,7 @@ const selectLikeExercise = require("../../repositories/exercises/selectLikeExerc
 const checkEmployeeLike = async (req, res, next) => {
   try {
     const { id: idExercise } = req.params;
-    //console.log(idExercise, "ID EXERCISE");
     const idEmployee = req.auth.id;
-    //console.log(idEmployee, "idEmployee");
 
     const like = await selectLikeExercise(idExercise, idEmployee);
 

@@ -23,7 +23,6 @@ const selectExercisesAll = async (type, muscle_group) => {
 
   query += ` GROUP BY e.id`;
 
-  console.log(query, "CASTILLO");
 
   const [ejercicios] = await pool.query(query, values);
 
