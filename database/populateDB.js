@@ -52,13 +52,22 @@ const populateDB = async () => {
     console.log("Inserting exercises");
 
     const exercises = 10;
+    const types = ["aerobic", "strength", "balance", "flexibility"];
+    const muscle_groups = [
+      "abdominals",
+      "chest",
+      "back",
+      "arms",
+      "legs",
+      "shoulders",
+    ];
 
     for (let index = 0; index < exercises; index++) {
       const employeeId = 1;
       const title = faker.lorem.words(3);
       const description = faker.lorem.words(5);
-      const muscle_group = faker.lorem.words(5);
-      const type = faker.lorem.words(3);
+      const muscle_group = muscle_groups[Math.floor(Math.random() * muscle_groups.length)];
+      const type = types[Math.floor(Math.random() * types.length)];
 
       await pool.query(`
           INSERT INTO exercises (employee_id, title, description, muscle_group, type)

@@ -7,7 +7,6 @@ const getExercisesAll = async (req, res, next) => {
 
     res.status(200).send({ status: "ok", data: exercise });
 
-    console.log(exercise, "ejercicio data");
   } catch (error) {
     next(error);
   }
